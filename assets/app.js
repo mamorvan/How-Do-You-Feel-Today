@@ -28,6 +28,8 @@ $("#createButton").on("click", function(event) {
 makeButtons();
 
 $(document).on("click", ".button", function(){
+
+	$("#gifs").empty();
 	var feeling = $(this).val();
 	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
         feeling + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -44,6 +46,10 @@ console.log(gifs);
 			var ratingText = $("<p>").html("Rated: " + rating);
 			// var gif = gifs.data[i].images.fixed_height_still.url;
 			var gifImg = $("<img>").attr("src", gifs.data[i].images.fixed_height_still.url);
+			gifImg.attr("data-still", gifs.data[i].images.fixed_height_still.url);
+			gifImg.attr("data-animate", gifs.data[i].images.fixed_height.url);
+			gifImg.attr("data-state", "still");
+			gifImg.addClass("gifImg");
 
 			gifDiv.append(ratingText);
 			gifDiv.append(gifImg);
@@ -54,3 +60,25 @@ console.log(gifs);
     }) //end of ajax call
 
 }) //end of click on feeling button function
+$(document).on("click", ".gifImg", function(){
+	var state = $(this).attr("data-state");
+console.log(state);
+
+	if(state === "still") {
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	};
+
+	if(state === "animate") {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state","still");
+	};
+}) //end of click on gif function to pause or play
+
+
+
+
+
+
+
+
