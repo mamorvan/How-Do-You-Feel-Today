@@ -38,7 +38,6 @@ form {
 	padding: 20px;
 	border-bottom: 2px solid #D6D165;
 	text-align: center;
-
 }
 
 #addAFeeling {
@@ -64,4 +63,16 @@ form {
 	background-color: #D6D165;
 	border: 1px solid black;
 	border-radius: 5px;
+}
+
+#gifs {
+	text-align: center;
+}
+
+.gif {
+	display: inline-block;
+	border: 2px solid #D6D165;
+	text-align: center;
+	margin: 15px;
+	padding: 10px;
 }
